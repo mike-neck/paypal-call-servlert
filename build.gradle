@@ -19,8 +19,15 @@ dependencies {
     testCompile 'junit:junit:4.11'
 }
 
-jettyRun {
+def definePortNumber = {
     def port = System.getenv('PORT')
-    def portNumber = Objects.nonNull(port) ? Integer.valueOf(port) : 5000
-    httpPort = portNumber
+    return Objects.nonNull(port) ? Integer.valueOf(port) : 5000
+}
+
+jettyRun {
+    httpPort = definePortNumber()
+}
+
+jettyRunWar {
+    httpPort = definePortNumber()
 }
