@@ -1,0 +1,26 @@
+apply plugin : 'groovy'
+apply plugin : 'war'
+apply plugin : 'idea'
+apply plugin : 'jetty'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+group = 'ikemen'
+version = '0.1'
+
+repositories {
+    mavenCentral ()
+}
+
+dependencies {
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile 'org.codehaus.groovy:groovy-all:2.3.2'
+    testCompile 'junit:junit:4.11'
+}
+
+jettyRun {
+    def port = System.getenv('PORT')
+    def portNumber = Objects.nonNull(port) ? Integer.valueOf(port) : 5000
+    httpPort = portNumber
+}
