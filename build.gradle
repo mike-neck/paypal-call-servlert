@@ -16,6 +16,9 @@ repositories {
 dependencies {
     compile 'javax.servlet:javax.servlet-api:3.1.0'
     compile 'org.codehaus.groovy:groovy-all:2.3.2'
+    providedCompile ('org.eclipse.jetty:jetty-runner:9.2.0.v20140526') {
+        exclude module : 'javax.servlet-api'
+    }
     testCompile 'junit:junit:4.11'
 }
 
@@ -36,4 +39,10 @@ jettyRunWar {
     httpPort = definePortNumber()
 }
 
-task stage (dependsOn : ['clean', 'build'])
+task copyJetty (type : Copy) {
+    into "$buildDir/jetty"
+    from configurations.providedCompile
+}
+
+task stage (dependsOn : ['clean', 'copyJetty'])
+stage.finalizedBy build
