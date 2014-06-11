@@ -31,3 +31,5 @@ jettyRun {
 jettyRunWar {
     httpPort = definePortNumber()
 }
+
+task stage (dependsOn : ['clean', 'build'])
