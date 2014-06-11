@@ -21,7 +21,11 @@ dependencies {
 
 def definePortNumber = {
     def port = System.getenv('PORT')
-    return Objects.nonNull(port) ? Integer.valueOf(port) : 5000
+    if (port != null) {
+        return Integer.valueOf(port)
+    } else {
+        return 5000
+    }
 }
 
 jettyRun {
