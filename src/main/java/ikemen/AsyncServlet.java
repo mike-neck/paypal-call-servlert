@@ -33,6 +33,8 @@ public class AsyncServlet extends HttpServlet {
 
     private static final String PE = "</p>";
 
+    private static final String NEW_LINE = "<br/>";
+
     private static final String SPAN_HEAD = "<span class='head'>";
 
     private static final String SPAN_DATA = "<span class='data'>";
@@ -41,14 +43,14 @@ public class AsyncServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        execute(req, resp);
         doAsync(req);
+        execute(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        execute(req, resp);
         doAsync(req);
+        execute(req, resp);
     }
 
     private void execute(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -76,6 +78,7 @@ public class AsyncServlet extends HttpServlet {
                 .append(P)
                 .append(SPAN_HEAD).append("method").append(SPAN_END)
                 .append(SPAN_DATA).append(req.getMethod()).append(SPAN_END)
+                .append(NEW_LINE)
                 .append(PE)
                 .append("<h1>Header</h1>")
                 .append(P);
@@ -89,7 +92,8 @@ public class AsyncServlet extends HttpServlet {
                     .append(SPAN_END)
                     .append(SPAN_DATA)
                     .append(value)
-                    .append(SPAN_END);
+                    .append(SPAN_END)
+                    .append(NEW_LINE);
         }
 
         builder.append(PE)
