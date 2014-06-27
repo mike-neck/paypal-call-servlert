@@ -9,8 +9,19 @@
         <servlet-class>ikemen.PayPalCallServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>AsyncServlet</servlet-name>
+        <servlet-class>ikemen.AsyncServlet</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>PayPalCallServlet</servlet-name>
         <url-pattern>/call</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AsyncServlet</servlet-name>
+        <url-pattern>/async</url-pattern>
     </servlet-mapping>
 </web-app>
