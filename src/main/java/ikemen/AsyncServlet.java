@@ -114,7 +114,7 @@ public class AsyncServlet extends HttpServlet {
     }
 
     private void doAsync(HttpServletRequest req) {
-        AsyncContext context = req.getAsyncContext();
+        AsyncContext context = req.startAsync();
         context.start(new Worker(context));
     }
 
